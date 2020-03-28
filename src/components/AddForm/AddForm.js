@@ -1,31 +1,34 @@
 import React from "react";
 import style from "styled-components";
 
-const AddForm = ({ onSubmit }) => {
-  onSubmit = event => {
-    event.preventDefault();
+class AddForm extends React.Component {
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.items);
   };
 
-  return (
-    <Form>
-      <FormBlock>
-        <h4>
-          <label for="title">Title</label>
-        </h4>
-        <input type="text" id="title" placeholder="Enter post title" />
-      </FormBlock>
-      <FormBlock>
-        <h4>
-          <label for="description">Description</label>
-        </h4>
-        <textarea placeholder="Enter text" id="description" />
-      </FormBlock>
-      <Button type="submit" onSubmit={onSubmit}>
-        Submit
-      </Button>
-    </Form>
-  );
-};
+  render() {
+    return (
+      <Form>
+        <FormBlock>
+          <h4>
+            <label for="title">Title</label>
+          </h4>
+          <input type="text" id="title" placeholder="Enter post title" />
+        </FormBlock>
+        <FormBlock>
+          <h4>
+            <label for="description">Description</label>
+          </h4>
+          <textarea placeholder="Enter text" id="description" />
+        </FormBlock>
+        <Button type="submit" onSubmit={this.onSubmit}>
+          Submit
+        </Button>
+      </Form>
+    );
+  }
+}
 
 export default AddForm;
 

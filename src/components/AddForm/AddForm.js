@@ -2,6 +2,10 @@ import React from "react";
 import style from "styled-components";
 
 const AddForm = ({ onSubmit }) => {
+  onSubmit = event => {
+    event.preventDefault();
+  };
+
   return (
     <Form>
       <FormBlock>
@@ -30,7 +34,7 @@ const Form = style.form`
   max-width: 500px;
 	padding: 10px 20px;
 	background: #f4f7f8;
-	margin: 10px auto;
+  margin: 10px auto;
 	padding: 20px;
 	background: #f4f7f8;
 	border-radius: 8px;

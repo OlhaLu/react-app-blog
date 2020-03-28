@@ -14,9 +14,7 @@ const fetchItem = id => dispatch => {
 };
 
 const createNewPost = () => dispatch => {
-  api.createNewPost().then(({ data }) => {
-    dispatch(postsActions.appendItem(data));
-  });
+  api.createNewPost();
 };
 
 const fetchRemoveItem = id => dispatch => {

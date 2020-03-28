@@ -13,6 +13,12 @@ const fetchItem = id => dispatch => {
   });
 };
 
+const createNewPost = () => dispatch => {
+  api.createNewPost().then(({ data }) => {
+    dispatch(postsActions.appendItem(data));
+  });
+};
+
 const fetchRemoveItem = id => dispatch => {
   dispatch(postsActions.removeItem(id));
   api.removePost(id);
@@ -21,5 +27,6 @@ const fetchRemoveItem = id => dispatch => {
 export default {
   fetchItems,
   fetchItem,
+  createNewPost,
   fetchRemoveItem
 };

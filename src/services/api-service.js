@@ -12,6 +12,10 @@ const getPost = id => {
   axios.get(`/posts/${id}?_embed=comments`);
 };
 
+const createNewPost = () => {
+  axios.post(`/posts`);
+};
+
 const removePost = id => {
   axios.delete(`/posts/${id}`);
 };
@@ -19,5 +23,6 @@ const removePost = id => {
 export default {
   getPosts,
   getPost,
+  createNewPost,
   removePost
 };

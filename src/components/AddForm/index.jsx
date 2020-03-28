@@ -1,1 +1,1 @@
-export { default } from "./AddForm";
+export { default } from "./AddFormContainer";

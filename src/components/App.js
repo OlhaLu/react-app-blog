@@ -1,36 +1,31 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { AddForm, FullPost, PostsList, NotFound } from "../components";
+import { AddForm, PostsList, NotFound } from "../components";
+import Navigation from "./Navigation";
 import routes from "../routes";
+import style from "styled-components";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <AppStyle>
         <BrowserRouter>
           <div>
-            <div className="container">
-              <div className="content">
-                <div className="content">
-                  <Switch>
-                    <Route
-                      exact
-                      path={routes.MAIN_POST_PAGE}
-                      component={PostsList}
-                    />
-                    <Route path={routes.POST_PAGE} component={FullPost} />
-                    <Route path={routes.CREATE_POST_PAGE} component={AddForm} />
-                    <Route path="*" component={NotFound} />
-                    <Redirect to="/" />
-                  </Switch>
-                </div>
-              </div>
-            </div>
+            <Navigation />
+            <Switch>
+              <Route exact path={routes.MAIN_POST_PAGE} component={PostsList} />
+              <Route path={routes.CREATE_POST_PAGE} component={AddForm} />
+              <Route path="*" component={NotFound} />
+              <Redirect to="/" />
+            </Switch>
           </div>
         </BrowserRouter>
-      </div>
+      </AppStyle>
     );
   }
 }
 
 export default App;
+
+const AppStyle = style.div`
+background: #d3d3d3`;

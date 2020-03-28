@@ -1,26 +1,22 @@
 import postsTypes from "./postsTypes";
+import { combineReducers } from "redux";
 
 const postsReduсer = (state = null, action) => {
   const { type, payload } = action;
   switch (type) {
     case postsTypes.SET_ITEMS:
-      return {
-        ...state,
-        items: payload
-      };
+      return payload;
+
     case postsTypes.APPEND_ITEM:
-      return {
-        ...state,
-        items: state.items ? [...state.items, payload] : [payload]
-      };
+      return payload;
+
     case postsTypes.REMOVE_ITEM:
-      return {
-        ...state,
-        items: state.items.filter(item => item._id !== payload)
-      };
+      return state.filter(item => item.id !== payload);
     default:
       return state;
   }
 };
 
-export default postsReduсer;
+export default combineReducers({
+  items: postsReduсer
+});

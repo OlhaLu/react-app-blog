@@ -16,10 +16,6 @@ const getPost = (id: number) => {
   axios.get<apiData>`/posts/${id}?_embed=comments`;
 };
 
-const createNewPost = () => {
-  axios.post(`/posts`);
-};
-
 const removePost = (id: number) => {
   axios.delete<apiData>`/posts/${id}`;
 };
@@ -27,6 +23,5 @@ const removePost = (id: number) => {
 export default {
   getPosts,
   getPost,
-  createNewPost,
   removePost
 };

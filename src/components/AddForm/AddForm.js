@@ -16,27 +16,25 @@ class AddForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.articleToEdit) {
+    if (nextProps) {
       this.setState({
-        title: nextProps.articleToEdit.title,
-        body: nextProps.articleToEdit.body
+        title: nextProps.title,
+        body: nextProps.body
       });
     }
   }
 
   handleSubmit() {
-    const { onSubmit, articleToEdit } = this.props;
+    const { onSubmit } = this.props;
     const { title, body } = this.state;
 
-    if (!articleToEdit) {
-      return axios
-        .post("https://simple-blog-api.crew.red/posts", {
-          title,
-          body
-        })
-        .then(res => onSubmit(res.data))
-        .then(() => this.setState({ title: "", body: "" }));
-    }
+    return axios
+      .post("https://simple-blog-api.crew.red/posts", {
+        title,
+        body
+      })
+      .then(res => onSubmit(res.data))
+      .then(() => this.setState({ title: "", body: "" }));
   }
 
   handleChangeField(key, event) {
@@ -47,7 +45,6 @@ class AddForm extends React.Component {
   }
 
   render() {
-    const { articleToEdit } = this.props;
     const { title, body } = this.state;
 
     return (
@@ -76,7 +73,7 @@ class AddForm extends React.Component {
           />
         </FormBlock>
         <Button type="submit" onClick={this.handleSubmit}>
-          {articleToEdit ? "Update" : "Submit"}
+          Submit
         </Button>
       </Form>
     );

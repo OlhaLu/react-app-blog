@@ -13,3 +13,4 @@
 * User interface built with styled-components
 * Network request handled with axios
 * Work with endpoints API, use simple Node.js
+* Web Site into netlify.com

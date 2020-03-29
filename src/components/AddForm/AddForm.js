@@ -1,5 +1,6 @@
 import React from "react";
 import style from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
 const axios = require("axios");
 
 class AddForm extends React.Component {
@@ -24,23 +25,25 @@ class AddForm extends React.Component {
     }
   }
 
-  handleSubmit(e) {
-    const { onSubmit } = this.props;
-    const { title, body } = this.state;
+  handleSubmit(event) {
+    event.preventDefault();
+    toast.info(
+      "Congrats your post was added, scroll and check down on the main page",
+      {
+        autoClose: 4000
+      }
+    );
 
+    const { title, body } = this.state;
     return axios
       .post("https://simple-blog-api.crew.red/posts", {
         title,
         body
       })
-      .then(res => onSubmit(res.data))
       .then(() => this.setState({ title: "", body: "" }));
-
-    e.preventDefault();
   }
 
   handleChangeField(key, event) {
-    event.preventDefault();
     this.setState({
       [key]: event.target.value
     });
@@ -50,34 +53,37 @@ class AddForm extends React.Component {
     const { title, body } = this.state;
 
     return (
-      <Form>
-        <FormBlock>
-          <h4>
-            <Label for="title">Post title</Label>
-          </h4>
-          <input
-            onChange={ev => this.handleChangeField("title", ev)}
-            value={title}
-            type="text"
-            id="title"
-            placeholder="Enter post title"
-          />
-        </FormBlock>
-        <FormBlock>
-          <h4>
-            <Label for="description">Description</Label>
-          </h4>
-          <textarea
-            onChange={ev => this.handleChangeField("body", ev)}
-            value={body}
-            placeholder="Enter text"
-            id="description"
-          />
-        </FormBlock>
-        <Button type="submit" onClick={this.handleSubmit}>
-          Submit
-        </Button>
-      </Form>
+      <>
+        <Form>
+          <FormBlock>
+            <h4>
+              <Label for="title">Post title</Label>
+            </h4>
+            <input
+              onChange={ev => this.handleChangeField("title", ev)}
+              value={title}
+              type="text"
+              id="title"
+              placeholder="Enter post title"
+            />
+          </FormBlock>
+          <FormBlock>
+            <h4>
+              <Label for="description">Description</Label>
+            </h4>
+            <textarea
+              onChange={ev => this.handleChangeField("body", ev)}
+              value={body}
+              placeholder="Enter text"
+              id="description"
+            />
+          </FormBlock>
+          <Button type="submit" onClick={this.handleSubmit}>
+            Submit
+          </Button>
+        </Form>
+        <ToastContainer />
+      </>
     );
   }
 }

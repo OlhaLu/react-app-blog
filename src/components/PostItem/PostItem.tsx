@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import style from "styled-components";
+import PostsListActions from "../../redux/postsOperations";
 
 interface ItemProps {
   title: string;
@@ -10,14 +12,14 @@ interface ItemProps {
 
 interface PostItemProps {
   item: ItemProps;
-  onRemove: (id: number) => void;
+  fetchRemoveItem: (id: number) => void;
 }
 
 const PostItem: React.FC<PostItemProps> = ({
   item: { title, body, id },
-  onRemove
+  fetchRemoveItem
 }) => {
-  const deleteItem = () => onRemove(id);
+  const deleteItem = () => fetchRemoveItem(id);
 
   return (
     <Item>
@@ -29,10 +31,15 @@ const PostItem: React.FC<PostItemProps> = ({
   );
 };
 
-export default PostItem;
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchRemoveItem: (value: any) =>
+    dispatch(PostsListActions.fetchRemoveItem(value))
+});
+
+export default connect(null, mapDispatchToProps)(PostItem);
 
 const Item = style.div`
-border: #ECECEC 2px solid;`;
+border: #ECECEC 3px solid;`;
 
 const Title = style.h2`
   text-transform: uppercase;
@@ -52,14 +59,14 @@ const Body = style.h3`
   `;
 
 const Button = style.button`
-    background: #ECECEC;
+    background:  #ADD8E6;
     font-size: 14px;
 		border-radius: 15px;
 		padding: 10px 20px;
 		display: block;
 		font-family: arial;
 		font-weight: bold;
-    color: #40a9ff;
+    color: #008B8B;
 		text-decoration: none;
 		text-shadow:0px 1px 0px #fff;
 		border:1px solid #a7a7a7;

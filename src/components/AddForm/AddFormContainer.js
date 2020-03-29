@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import AddForm from "./AddForm";
 import selector from "../../redux/postsSelectors";
 import PostsListActions from "../../redux/postsOperations";
+// import { AppStateType } from "../../redux/rootReducer";
 
 class AddFormContainer extends React.Component {
   componentWillMount() {

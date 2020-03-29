@@ -31,4 +31,4 @@ export default App;
 
 const AppStyle = style.div`
 text-align: center;
-background: #d3d3d3`;
+background: #F0FFFF`;

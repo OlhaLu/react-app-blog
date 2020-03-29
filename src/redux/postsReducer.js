@@ -1,5 +1,5 @@
-import postsTypes from "./postsTypes";
 import { combineReducers } from "redux";
+import postsTypes from "./postsTypes";
 
 const postsReduсer = (state = null, action) => {
   const { type, payload } = action;

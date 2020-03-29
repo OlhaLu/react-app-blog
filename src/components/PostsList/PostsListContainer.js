@@ -16,8 +16,7 @@ class PostsListContainer extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchItems: value => dispatch(PostsListActions.fetchItems(value)),
-  fetchRemoveItem: value => dispatch(PostsListActions.fetchRemoveItem(value))
+  fetchItems: value => dispatch(PostsListActions.fetchItems(value))
 });
 
 export default connect(null, mapDispatchToProps)(PostsListContainer);

@@ -7,12 +7,21 @@ const Navigation: React.FC = () => (
   <NavBlock>
     <NavigationBar>
       <NavItems>
-        <NavLink exact to={routes.MAIN_POST_PAGE}>
-          Main post page
+        <NavLink
+          exact
+          to={routes.MAIN_POST_PAGE}
+          style={{ textDecoration: "none" }}
+        >
+          <NavTitle>Main post page</NavTitle>
         </NavLink>
       </NavItems>
       <NavItems>
-        <NavLink to={routes.CREATE_POST_PAGE}>Create New Post</NavLink>
+        <NavLink
+          to={routes.CREATE_POST_PAGE}
+          style={{ textDecoration: "none" }}
+        >
+          <NavTitle>Create New Post</NavTitle>
+        </NavLink>
       </NavItems>
     </NavigationBar>
   </NavBlock>
@@ -21,23 +30,25 @@ const Navigation: React.FC = () => (
 export default Navigation;
 
 const NavBlock = style.div`
-background-color: #FFFFF0;
+background-color: #ADD8E6;
 `;
 
 const NavigationBar = style.ul`
   margin: 0;
   padding: 0;
   width: 200px;
+  padding: 8px 16px;
 `;
 
-const NavItems = style.li`
-list-style-type: none;
-text-decoration: none;
+const NavItems = style.li`e;
 display:inline-block;
-color: #FFF0F5;
-padding: 8px 16px;
 color: white;
 
 &:hover {
-background: #40a9ff;
+background: #87CEEB;
+`;
+
+const NavTitle = style.h4`
+color: #191970;
+text-transform: uppercase;
 `;

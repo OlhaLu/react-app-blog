@@ -113,14 +113,14 @@ const Label = style.label`
   `;
 
 const Button = style.button`
-    background: #ECECEC;
+    background: #ADD8E6;
     font-size: 14px;
-		border-radius: 15px;
+		border-radius: 10px;
 		padding: 10px 20px;
 		display: block;
 		font-family: arial;
 		font-weight: bold;
-    color: #40a9ff;
+    color: #008080;
 		text-decoration: none;
 		text-shadow:0px 1px 0px #fff;
 		border:1px solid #a7a7a7;

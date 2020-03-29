@@ -4,19 +4,27 @@ import PostItem from "../PostItem";
 import selector from "../../redux/postsSelectors";
 import style from "styled-components";
 
-const PostsList = ({ items, onRemove }) => {
+interface ItemPostsProps {
+  id: number;
+  title: string;
+  body: string;
+}
+
+interface PostsListProps {
+  items: [ItemPostsProps];
+}
+
+const PostsList: React.FC<PostsListProps> = ({ items }) => {
   return (
     <Items>
       {items
-        ? items.map(item => (
-            <PostItem key={item.id} item={item} onRemove={onRemove} />
-          ))
+        ? items.map(item => <PostItem key={item.id} item={item} />)
         : "Loading..."}
     </Items>
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   items: selector.getAllPosts(state)
 });
 

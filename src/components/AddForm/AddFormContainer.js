@@ -12,7 +12,7 @@ class AddFormContainer extends React.Component {
 
   render() {
     const { createNewPost } = this.props;
-    return <AddForm onSubmit={createNewPost} />;
+    return <AddForm createNewPost={createNewPost} />;
   }
 }
 

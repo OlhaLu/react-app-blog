@@ -1,29 +1,82 @@
 import React from "react";
 import style from "styled-components";
+const axios = require("axios");
 
 class AddForm extends React.Component {
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state.items);
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: "",
+      body: ""
+    };
+
+    this.handleChangeField = this.handleChangeField.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.articleToEdit) {
+      this.setState({
+        title: nextProps.articleToEdit.title,
+        body: nextProps.articleToEdit.body
+      });
+    }
+  }
+
+  handleSubmit() {
+    const { onSubmit, articleToEdit } = this.props;
+    const { title, body } = this.state;
+
+    if (!articleToEdit) {
+      return axios
+        .post("https://simple-blog-api.crew.red/posts", {
+          title,
+          body
+        })
+        .then(res => onSubmit(res.data))
+        .then(() => this.setState({ title: "", body: "" }));
+    }
+  }
+
+  handleChangeField(key, event) {
+    event.preventDefault();
+    this.setState({
+      [key]: event.target.value
+    });
+  }
 
   render() {
+    const { articleToEdit } = this.props;
+    const { title, body } = this.state;
+
     return (
       <Form>
         <FormBlock>
           <h4>
             <label for="title">Title</label>
           </h4>
-          <input type="text" id="title" placeholder="Enter post title" />
+          <input
+            onChange={ev => this.handleChangeField("title", ev)}
+            value={title}
+            type="text"
+            id="title"
+            placeholder="Enter post title"
+          />
         </FormBlock>
         <FormBlock>
           <h4>
             <label for="description">Description</label>
           </h4>
-          <textarea placeholder="Enter text" id="description" />
+          <textarea
+            onChange={ev => this.handleChangeField("body", ev)}
+            value={body}
+            placeholder="Enter text"
+            id="description"
+          />
         </FormBlock>
-        <Button type="submit" onSubmit={this.onSubmit}>
-          Submit
+        <Button type="submit" onClick={this.handleSubmit}>
+          {articleToEdit ? "Update" : "Submit"}
         </Button>
       </Form>
     );

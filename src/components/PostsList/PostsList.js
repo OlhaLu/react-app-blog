@@ -23,7 +23,10 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(PostsList);
 
 const Items = style.div`
-  padding: 20px 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  padding: 40px 20px;
   border-bottom: 2px solid rgba(0,0,0,.05); 
   text-align: center;
 `;

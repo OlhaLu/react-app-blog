@@ -2,18 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "styled-components";
 
-const PostItem = ({ item: { title, id }, onRemove }) => {
+const PostItem = ({ item: { title, body, id }, onRemove }) => {
   const deleteItem = () => onRemove(id);
 
   return (
     <Item>
-      <Link to={`/posts/${id}`}>
-        <Title>{title}</Title>
-      </Link>
+      <Link to={`/posts/${id}`}></Link>
+      <Title>{title}</Title>
+      <Body>{body}</Body>
+
       <Button onClick={deleteItem}>Remove</Button>
-      <LinkComment>
-        <Link to={`/posts/${id}?_embed=comments`}>edit comments</Link>
-      </LinkComment>
     </Item>
   );
 };
@@ -24,14 +22,19 @@ const Item = style.div`
 border: #ECECEC 2px solid;`;
 
 const Title = style.h2`
-font-family: Georgia, "Times New Roman", Times, serif;
+  text-transform: uppercase;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 24px;
   letter-spacing: 1px;
-  max-width: 500px;
   width: 100%;
-  position: relative;
-  display: inline-block;
   color: #465457;`;
+
+const Body = style.h3`
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+  max-width: 700px;
+
+  `;
 
 const Button = style.button`
     background: #ECECEC;
@@ -49,11 +52,3 @@ const Button = style.button`
 		margin:0px auto;
 		box-shadow: 0px 2px 1px white inset, 0px -2px 8px white, 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 8px 10px rgba(0, 0, 0, 0.1);
     -webkit-transition:box-shadow 0.5s;`;
-
-const LinkComment = style.p`
-  font-size: 18px;
-  color: red;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  text-decoration: none
-  text-transform: uppercase;
-    `;

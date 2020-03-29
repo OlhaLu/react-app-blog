@@ -8,7 +8,17 @@ const postsReduсer = (state = null, action) => {
       return payload;
 
     case postsTypes.APPEND_ITEM:
-      return payload;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id === action.data.item.id) {
+            return {
+              ...action.data.item
+            };
+          }
+          return item;
+        })
+      };
 
     case postsTypes.REMOVE_ITEM:
       return state.filter(item => item.id !== payload);

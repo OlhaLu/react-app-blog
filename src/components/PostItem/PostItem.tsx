@@ -2,7 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "styled-components";
 
-const PostItem = ({ item: { title, body, id }, onRemove }) => {
+interface ItemProps {
+  title: string;
+  body: string;
+  id: number;
+}
+
+interface PostItemProps {
+  item: ItemProps;
+  onRemove: (id: number) => void;
+}
+
+const PostItem: React.FC<PostItemProps> = ({
+  item: { title, body, id },
+  onRemove
+}) => {
   const deleteItem = () => onRemove(id);
 
   return (
@@ -10,7 +24,6 @@ const PostItem = ({ item: { title, body, id }, onRemove }) => {
       <Link to={`/posts/${id}`}></Link>
       <Title>{title}</Title>
       <Body>{body}</Body>
-
       <Button onClick={deleteItem}>Remove</Button>
     </Item>
   );
@@ -30,10 +43,12 @@ const Title = style.h2`
   color: #465457;`;
 
 const Body = style.h3`
+  color: #191970;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 20px;
   max-width: 700px;
-
+  margin-left: auto;
+  margin-right: auto;
   `;
 
 const Button = style.button`

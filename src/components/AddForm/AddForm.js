@@ -54,7 +54,7 @@ class AddForm extends React.Component {
       <Form>
         <FormBlock>
           <h4>
-            <label for="title">Title</label>
+            <Label for="title">Post title</Label>
           </h4>
           <input
             onChange={ev => this.handleChangeField("title", ev)}
@@ -66,7 +66,7 @@ class AddForm extends React.Component {
         </FormBlock>
         <FormBlock>
           <h4>
-            <label for="description">Description</label>
+            <Label for="description">Description</Label>
           </h4>
           <textarea
             onChange={ev => this.handleChangeField("body", ev)}
@@ -87,7 +87,7 @@ export default AddForm;
 
 const Form = style.form`
   font-size: 20px;
-  max-width: 500px;
+  max-width: 900px;
 	padding: 10px 20px;
 	background: #f4f7f8;
   margin: 10px auto;
@@ -105,7 +105,12 @@ const FormBlock = style.label`
 	margin-right: 4px;
 	line-height: 30px;
 	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-	border-radius: 15px 15px 15px 0px;`;
+  border-radius: 15px 15px 15px 0px;`;
+
+const Label = style.label`
+  font-size: 26px;
+  margin: 20px;
+  `;
 
 const Button = style.button`
     background: #ECECEC;

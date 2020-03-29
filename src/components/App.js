@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { AddForm, PostsList, NotFound } from "../components";
-import HeaderBlock from "./HeaderBlock/HeaderBlock";
+import { AddForm, PostsList, NotFound } from ".";
+import HeaderBlock from "./HeaderBlock/HeaderBlock.";
 import Navigation from "./Navigation";
 import routes from "../routes";
 import style from "styled-components";

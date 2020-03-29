@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import routes from "../routes";
 import style from "styled-components";
 
-const Navigation = () => (
+const Navigation: React.FC = () => (
   <NavBlock>
     <NavigationBar>
       <NavItems>
@@ -25,20 +25,19 @@ background-color: #FFFFF0;
 `;
 
 const NavigationBar = style.ul`
- list-style-type: none;
- text-decoration: none;
   margin: 0;
   padding: 0;
   width: 200px;
 `;
 
 const NavItems = style.li`
+list-style-type: none;
+text-decoration: none;
 display:inline-block;
 color: #FFF0F5;
 padding: 8px 16px;
 color: white;
 
 &:hover {
-  background: #40a9ff;
-
+background: #40a9ff;
 `;

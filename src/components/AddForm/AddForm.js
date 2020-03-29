@@ -24,7 +24,7 @@ class AddForm extends React.Component {
     }
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
     const { onSubmit } = this.props;
     const { title, body } = this.state;
 
@@ -35,6 +35,8 @@ class AddForm extends React.Component {
       })
       .then(res => onSubmit(res.data))
       .then(() => this.setState({ title: "", body: "" }));
+
+    e.preventDefault();
   }
 
   handleChangeField(key, event) {

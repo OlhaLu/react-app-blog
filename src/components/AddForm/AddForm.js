@@ -10,7 +10,7 @@ class AddForm extends React.Component {
 
     this.state = {
       title: "",
-      body: ""
+      body: "",
     };
 
     this.handleChangeField = this.handleChangeField.bind(this);
@@ -21,7 +21,7 @@ class AddForm extends React.Component {
     if (nextProps) {
       this.setState({
         title: nextProps.title,
-        body: nextProps.body
+        body: nextProps.body,
       });
     }
   }
@@ -31,7 +31,7 @@ class AddForm extends React.Component {
     toast.info(
       "Congrats your post was added, scroll and check down on the main page",
       {
-        autoClose: 4000
+        autoClose: 4000,
       }
     );
 
@@ -39,14 +39,14 @@ class AddForm extends React.Component {
     return axios
       .post("https://simple-blog-api.crew.red/posts", {
         title,
-        body
+        body,
       })
       .then(() => this.setState({ title: "", body: "" }));
   }
 
   handleChangeField(key, event) {
     this.setState({
-      [key]: event.target.value
+      [key]: event.target.value,
     });
   }
 
@@ -61,7 +61,7 @@ class AddForm extends React.Component {
               <Label for="title">Post title</Label>
             </h4>
             <input
-              onChange={ev => this.handleChangeField("title", ev)}
+              onChange={(ev) => this.handleChangeField("title", ev)}
               value={title}
               type="text"
               id="title"
@@ -73,7 +73,7 @@ class AddForm extends React.Component {
               <Label for="description">Description</Label>
             </h4>
             <textarea
-              onChange={ev => this.handleChangeField("body", ev)}
+              onChange={(ev) => this.handleChangeField("body", ev)}
               value={body}
               placeholder="Enter text"
               id="description"
